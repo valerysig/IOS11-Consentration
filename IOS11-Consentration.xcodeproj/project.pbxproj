@@ -54,14 +54,22 @@
 		2A1DEC02216933D10015A121 /* IOS11-Consentration */ = {
 			isa = PBXGroup;
 			children = (
-				2A1DEC03216933D10015A121 /* AppDelegate.swift */,
 				2A1DEC05216933D10015A121 /* ViewController.swift */,
 				2A1DEC07216933D10015A121 /* Main.storyboard */,
-				2A1DEC0A216933D20015A121 /* Assets.xcassets */,
-				2A1DEC0C216933D20015A121 /* LaunchScreen.storyboard */,
 				2A1DEC0F216933D20015A121 /* Info.plist */,
+				2A1DEC1521693E790015A121 /* Supporting files */,
 			);
 			path = "IOS11-Consentration";
+			sourceTree = "<group>";
+		};
+		2A1DEC1521693E790015A121 /* Supporting files */ = {
+			isa = PBXGroup;
+			children = (
+				2A1DEC03216933D10015A121 /* AppDelegate.swift */,
+				2A1DEC0A216933D20015A121 /* Assets.xcassets */,
+				2A1DEC0C216933D20015A121 /* LaunchScreen.storyboard */,
+			);
+			path = "Supporting files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
