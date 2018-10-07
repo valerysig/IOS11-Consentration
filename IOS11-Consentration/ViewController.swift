@@ -14,21 +14,30 @@ class ViewController: UIViewController {
     @IBOutlet weak var flipCountLabel: UILabel!
     @IBOutlet var cardButtons: [UIButton]!
     
-    lazy var game = Consentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
-    var flipCount = 0 { didSet { flipCountLabel.text = "Flips: \(flipCount)" } }
-    var emojiChoices = ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎"]
-    var emoji = [Int : String]()
+    var game : Consentration!
+    var flipCount : Int! { didSet { flipCountLabel.text = "Flips: \(flipCount!)" } }
+    var emojiChoices : [String]!
+    var emoji : [Int : String]!
     
+    //MARK: Constructors
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        clear()
+    }
     
     //MARK: Methods
     @IBAction func touchCard(_ sender: UIButton) {
-        flipCount += 1
+        flipCount = flipCount + 1
         if let cardNumber = cardButtons.index(of: sender) {
             game.chooseCard(at: cardNumber)
             updateViewFromModel()
         } else {
             print("Chosen card was not in cardButtons")
         }
+    }
+    
+    @IBAction func touchNewGame() {
+        clear()
     }
     
     //MARK: Private meghods
@@ -52,6 +61,14 @@ class ViewController: UIViewController {
             emoji[card.identifier] = emojiChoices.remove(at: randomIndex)
         }
         return emoji[card.identifier] ?? "?"
+    }
+    
+    func clear() {
+        self.game = Consentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
+        self.flipCount = 0
+        self.emojiChoices = ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎"]
+        self.emoji = [Int : String]()
+        updateViewFromModel()
     }
 }
 
