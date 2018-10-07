@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2A0DDA3B216A7782004FF623 /* Consentration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0DDA3A216A7782004FF623 /* Consentration.swift */; };
+		2A0DDA3D216A78F4004FF623 /* Card.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A0DDA3C216A78F4004FF623 /* Card.swift */; };
 		2A1DEC04216933D10015A121 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1DEC03216933D10015A121 /* AppDelegate.swift */; };
 		2A1DEC06216933D10015A121 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A1DEC05216933D10015A121 /* ViewController.swift */; };
 		2A1DEC09216933D10015A121 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1DEC07216933D10015A121 /* Main.storyboard */; };
@@ -15,6 +17,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2A0DDA3A216A7782004FF623 /* Consentration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Consentration.swift; sourceTree = "<group>"; };
+		2A0DDA3C216A78F4004FF623 /* Card.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Card.swift; sourceTree = "<group>"; };
 		2A1DEC00216933D10015A121 /* IOS11-Consentration.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "IOS11-Consentration.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		2A1DEC03216933D10015A121 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2A1DEC05216933D10015A121 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -58,6 +62,8 @@
 				2A1DEC07216933D10015A121 /* Main.storyboard */,
 				2A1DEC0F216933D20015A121 /* Info.plist */,
 				2A1DEC1521693E790015A121 /* Supporting files */,
+				2A0DDA3A216A7782004FF623 /* Consentration.swift */,
+				2A0DDA3C216A78F4004FF623 /* Card.swift */,
 			);
 			path = "IOS11-Consentration";
 			sourceTree = "<group>";
@@ -143,8 +149,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2A0DDA3B216A7782004FF623 /* Consentration.swift in Sources */,
 				2A1DEC06216933D10015A121 /* ViewController.swift in Sources */,
 				2A1DEC04216933D10015A121 /* AppDelegate.swift in Sources */,
+				2A0DDA3D216A78F4004FF623 /* Card.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
