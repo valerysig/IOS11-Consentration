@@ -12,13 +12,13 @@ class Consentration {
     //MARK: Members
     var cards = [Card]()
     var indexOfOneAndOnlyFaceUpCard : Int?
+    var chosenCards = Set<Int>()
+    var score = 0
     
     //MARK: Constructors
     init(numberOfPairsOfCards : Int) {
-        for _ in 0..<numberOfPairsOfCards {
-            let card = Card()
-            cards += [card, card]
-        }
+        Card.identifierFactory = 0
+        populateCards(numberOfPairsOfCards)
         shuffleCards()
     }
     
@@ -30,8 +30,14 @@ class Consentration {
                 if cards[matchIndex].identifier == cards[index].identifier {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
+                    
+                    score += 2
+                } else if (chosenCards.contains(index)) {
+                    score -= 1
                 }
                 cards[index].isFaceUp = true
+                chosenCards.insert(index)
+                
                 indexOfOneAndOnlyFaceUpCard = nil
             } else {
                 // either no cards or 2 cards are face up
@@ -39,12 +45,21 @@ class Consentration {
                     cards[flipDownIndex].isFaceUp = false
                 }
                 cards[index].isFaceUp = true
+                chosenCards.insert(index)
+                
                 indexOfOneAndOnlyFaceUpCard = index
             }
         }
     }
     
     //MARK: Private Methods
+    func populateCards(_ numberOfPairsOfCards : Int) {
+        for _ in 0..<numberOfPairsOfCards {
+            let card = Card()
+            cards += [card, card]
+        }
+    }
+    
     func shuffleCards() {
         var shuffledCards = [Card]()
         for _ in cards.indices {

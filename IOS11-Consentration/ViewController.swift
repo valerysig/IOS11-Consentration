@@ -12,10 +12,12 @@ class ViewController: UIViewController {
     
     //MARK: Members
     @IBOutlet weak var flipCountLabel: UILabel!
+    @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet var cardButtons: [UIButton]!
     
     var game : Consentration!
     var flipCount : Int! { didSet { flipCountLabel.text = "Flips: \(flipCount!)" } }
+    var score : Int! {didSet { scoreLabel.text = "Score: \(score!)" }}
     var emojiChoices : [String]!
     var emoji : [Int : String]!
     
@@ -53,6 +55,8 @@ class ViewController: UIViewController {
                 button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 0) : #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1)
             }
         }
+        
+        score = game.score
     }
     
     func emoji(for card : Card) -> String {
