@@ -66,7 +66,7 @@ class ViewController: UIViewController {
     func clear() {
         self.game = Consentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
         self.flipCount = 0
-        self.emojiChoices = ["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎"]
+        self.emojiChoices = StaticValues.THEMES[StaticValues.THEMES.count.getRandomNumUpToIt()]
         self.emoji = [Int : String]()
         updateViewFromModel()
     }
