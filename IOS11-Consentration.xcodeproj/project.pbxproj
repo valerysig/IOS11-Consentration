@@ -15,7 +15,6 @@
 		2A1DEC0B216933D20015A121 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2A1DEC0A216933D20015A121 /* Assets.xcassets */; };
 		2A1DEC0E216933D20015A121 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2A1DEC0C216933D20015A121 /* LaunchScreen.storyboard */; };
 		2A685E8C216BE98F008E282D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A685E8B216BE98F008E282D /* Extensions.swift */; };
-		2A685E8E216BF389008E282D /* StaticValues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A685E8D216BF389008E282D /* StaticValues.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -29,7 +28,6 @@
 		2A1DEC0D216933D20015A121 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2A1DEC0F216933D20015A121 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2A685E8B216BE98F008E282D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
-		2A685E8D216BF389008E282D /* StaticValues.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaticValues.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -69,7 +67,6 @@
 				2A0DDA3A216A7782004FF623 /* Consentration.swift */,
 				2A0DDA3C216A78F4004FF623 /* Card.swift */,
 				2A685E8B216BE98F008E282D /* Extensions.swift */,
-				2A685E8D216BF389008E282D /* StaticValues.swift */,
 			);
 			path = "IOS11-Consentration";
 			sourceTree = "<group>";
@@ -158,7 +155,6 @@
 				2A685E8C216BE98F008E282D /* Extensions.swift in Sources */,
 				2A0DDA3B216A7782004FF623 /* Consentration.swift in Sources */,
 				2A1DEC06216933D10015A121 /* ViewController.swift in Sources */,
-				2A685E8E216BF389008E282D /* StaticValues.swift in Sources */,
 				2A1DEC04216933D10015A121 /* AppDelegate.swift in Sources */,
 				2A0DDA3D216A78F4004FF623 /* Card.swift in Sources */,
 			);
