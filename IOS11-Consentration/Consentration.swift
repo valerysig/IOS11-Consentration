@@ -19,7 +19,7 @@ class Consentration {
             let card = Card()
             cards += [card, card]
         }
-        //TODO: Shuffle the cards (HW)
+        shuffleCards()
     }
     
     //MARK: Methods
@@ -44,4 +44,14 @@ class Consentration {
         }
     }
     
+    //MARK: Private Methods
+    func shuffleCards() {
+        var shuffledCards = [Card]()
+        for _ in cards.indices {
+            let randomIndex = cards.count.getRandomNumUpToIt()
+            shuffledCards.append(cards.remove(at: randomIndex))
+        }
+        
+        cards = shuffledCards
+    }
 }
