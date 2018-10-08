@@ -16,8 +16,6 @@ class ViewController: UIViewController {
     @IBOutlet var cardButtons: [UIButton]!
     
     var game : Consentration!
-    var flipCount : Int! { didSet { flipCountLabel.text = "Flips: \(flipCount!)" } }
-    var score : Int! {didSet { scoreLabel.text = "Score: \(score!)" }}
     var emojiChoices : [String]!
     var emoji : [Int : String]!
     
@@ -29,7 +27,6 @@ class ViewController: UIViewController {
     
     //MARK: Methods
     @IBAction func touchCard(_ sender: UIButton) {
-        flipCount = flipCount + 1
         if let cardNumber = cardButtons.index(of: sender) {
             game.chooseCard(at: cardNumber)
             updateViewFromModel()
@@ -56,7 +53,8 @@ class ViewController: UIViewController {
             }
         }
         
-        score = game.score
+        scoreLabel.text = "Score: \(game.score)"
+        flipCountLabel.text = "Flips: \(game.flipCount)"
     }
     
     func emoji(for card : Card) -> String {
@@ -69,7 +67,6 @@ class ViewController: UIViewController {
     
     func clear() {
         self.game = Consentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
-        self.flipCount = 0
         self.emojiChoices = StaticValues.THEMES[StaticValues.THEMES.count.getRandomNumUpToIt()]
         self.emoji = [Int : String]()
         updateViewFromModel()

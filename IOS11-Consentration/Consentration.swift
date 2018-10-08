@@ -14,6 +14,8 @@ class Consentration {
     var indexOfOneAndOnlyFaceUpCard : Int?
     var chosenCards = Set<Int>()
     var score = 0
+    var flipCount = 0
+    
     
     //MARK: Constructors
     init(numberOfPairsOfCards : Int) {
@@ -25,6 +27,8 @@ class Consentration {
     //MARK: Methods
     func chooseCard(at index : Int) {
         if !cards[index].isMatched {
+            flipCount += 1
+            
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
                 // check if cards match
                 if cards[matchIndex].identifier == cards[index].identifier {
