@@ -13,9 +13,18 @@ class Consentration {
     var cards = [Card]()
     var indexOfOneAndOnlyFaceUpCard : Int?
     var chosenCards = Set<Int>()
-    var score = 0
+    var score = 0.0
     var flipCount = 0
+    let startTime = Date().timeIntervalSince1970
     
+    //MARK: Properties
+    var timeSinceGameStart : Double {
+        return Date().timeIntervalSince1970 - startTime
+    }
+    
+    var cardMatchScore : Double {
+        return 100 / timeSinceGameStart
+    }
     
     //MARK: Constructors
     init(numberOfPairsOfCards : Int) {
@@ -35,7 +44,7 @@ class Consentration {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
                     
-                    score += 2
+                    score += cardMatchScore
                 } else if (chosenCards.contains(index)) {
                     score -= 1
                 }
