@@ -10,14 +10,35 @@ import Foundation
 
 class Consentration {
     //MARK: Members
-    var cards = [Card]()
-    var indexOfOneAndOnlyFaceUpCard : Int?
-    var chosenCards = Set<Int>()
+    private(set) var cards = [Card]()
+    private var chosenCards = Set<Int>()
     var score = 0.0
-    var flipCount = 0
-    let startTime = Date().timeIntervalSince1970
+    private(set) var flipCount = 0
+    private let startTime = Date().timeIntervalSince1970
     
     //MARK: Properties
+    private var indexOfOneAndOnlyFaceUpCard : Int? {
+        get {
+            var foundIndex : Int?
+            for index in cards.indices {
+                if cards[index].isFaceUp {
+                    if foundIndex == nil {
+                        foundIndex = index
+                    } else {
+                        return nil
+                    }
+                }
+            }
+            
+            return foundIndex
+        }
+        set {
+            for index in cards.indices {
+                cards[index].isFaceUp = (index == newValue)
+            }
+        }
+    }
+    
     var timeSinceGameStart : Double {
         return Date().timeIntervalSince1970 - startTime
     }
@@ -28,13 +49,16 @@ class Consentration {
     
     //MARK: Constructors
     init(numberOfPairsOfCards : Int) {
-        Card.identifierFactory = 0
+        assert(numberOfPairsOfCards > 0, "Consentration.init(\(numberOfPairsOfCards)): you must have at least 1 pairs of cards")
+        
         populateCards(numberOfPairsOfCards)
         shuffleCards()
     }
     
     //MARK: Methods
     func chooseCard(at index : Int) {
+        assert(cards.indices.contains(index), "Consentration.chooseCard(at: \(index)): chosen index no in the cards")
+        
         if !cards[index].isMatched {
             flipCount += 1
             
@@ -50,33 +74,26 @@ class Consentration {
                 }
                 cards[index].isFaceUp = true
                 chosenCards.insert(index)
-                
-                indexOfOneAndOnlyFaceUpCard = nil
             } else {
                 // either no cards or 2 cards are face up
-                for flipDownIndex in cards.indices {
-                    cards[flipDownIndex].isFaceUp = false
-                }
-                cards[index].isFaceUp = true
-                chosenCards.insert(index)
-                
                 indexOfOneAndOnlyFaceUpCard = index
+                chosenCards.insert(index)
             }
         }
     }
     
     //MARK: Private Methods
-    func populateCards(_ numberOfPairsOfCards : Int) {
+    private func populateCards(_ numberOfPairsOfCards : Int) {
         for _ in 0..<numberOfPairsOfCards {
             let card = Card()
             cards += [card, card]
         }
     }
     
-    func shuffleCards() {
+    private func shuffleCards() {
         var shuffledCards = [Card]()
         for _ in cards.indices {
-            let randomIndex = cards.count.getRandomNumUpToIt()
+            let randomIndex = cards.count.arc4random
             shuffledCards.append(cards.remove(at: randomIndex))
         }
         

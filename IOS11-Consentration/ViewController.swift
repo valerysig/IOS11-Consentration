@@ -11,17 +11,22 @@ import UIKit
 class ViewController: UIViewController {
     
     //MARK: Members
-    @IBOutlet weak var flipCountLabel: UILabel!
-    @IBOutlet weak var scoreLabel: UILabel!
-    @IBOutlet weak var newGameButton: UIButton!
-    @IBOutlet var cardButtons: [UIButton]!
+    @IBOutlet private weak var flipCountLabel: UILabel!
+    @IBOutlet private weak var scoreLabel: UILabel!
+    @IBOutlet private weak var newGameButton: UIButton!
+    @IBOutlet private var cardButtons: [UIButton]!
     
-    var game : Consentration!
-    var emojiChoices : [String]!
-    var emoji : [Int : String]!
+    private var game : Consentration!
+    private var emojiChoices : [String]!
+    private var emoji : [Int : String]!
     
     var cardBackColor : UIColor!
     var cardFrontColor : UIColor!
+    
+    //MARK: Properties
+    var numberOfPairsOfCards : Int {
+        return (cardButtons.count + 1) / 2
+    }
     
     //MARK: Constructors
     override func viewDidLoad() {
@@ -30,7 +35,7 @@ class ViewController: UIViewController {
     }
     
     //MARK: Methods
-    @IBAction func touchCard(_ sender: UIButton) {
+    @IBAction private func touchCard(_ sender: UIButton) {
         if let cardNumber = cardButtons.index(of: sender) {
             game.chooseCard(at: cardNumber)
             updateViewFromModel()
@@ -39,12 +44,12 @@ class ViewController: UIViewController {
         }
     }
     
-    @IBAction func touchNewGame() {
+    @IBAction private func touchNewGame() {
         clear()
     }
     
     //MARK: Private meghods
-    func updateViewFromModel() {
+    private func updateViewFromModel() {
         for index in cardButtons.indices {
             let button = cardButtons[index]
             let card = game.cards[index]
@@ -61,18 +66,18 @@ class ViewController: UIViewController {
         flipCountLabel.text = "Flips: \(game.flipCount)"
     }
     
-    func emoji(for card : Card) -> String {
+    private func emoji(for card : Card) -> String {
         if emoji[card.identifier] == nil, emojiChoices.count > 0 {
-            let randomIndex = emojiChoices.count.getRandomNumUpToIt()
+            let randomIndex = emojiChoices.count.arc4random
             emoji[card.identifier] = emojiChoices.remove(at: randomIndex)
         }
         return emoji[card.identifier] ?? "?"
     }
     
-    func clear() {
-        let chosenTheme = ViewController.THEMES[ViewController.THEMES.count.getRandomNumUpToIt()]
+    private func clear() {
+        let chosenTheme = ViewController.THEMES[ViewController.THEMES.count.arc4random]
         
-        self.game = Consentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
+        self.game = Consentration(numberOfPairsOfCards: numberOfPairsOfCards)
         self.emojiChoices = chosenTheme.emojis
         self.emoji = [Int : String]()
         
@@ -89,7 +94,7 @@ class ViewController: UIViewController {
     }
     
     //MARK: Constants
-    static let THEMES = [
+    private static let THEMES = [
         (emojis : ["😃", "😁", "😅", "😂", "☺️", "😇", "😍", "😎", "🤨"], background : #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), cardBack : #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1), cardFront : #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)), //Faces
         (emojis : ["🐶", "🐱", "🐹", "🐨", "🐸", "🐔", "🦄", "🐳", "🦍"], background : #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), cardBack : #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1), cardFront : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)), //Animals
         (emojis : ["🍏", "🍎", "🍊", "🍋", "🍉", "🍇", "🍒", "🍑", "🥥"], background : #colorLiteral(red: 0, green: 0, blue: 0, alpha: 1), cardBack : #colorLiteral(red: 1, green: 0.5763723254, blue: 0, alpha: 1), cardFront : #colorLiteral(red: 1, green: 1, blue: 1, alpha: 1)), //Fruits

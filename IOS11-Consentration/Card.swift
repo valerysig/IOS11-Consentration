@@ -11,7 +11,7 @@ import Foundation
 struct Card {
     
     //MARK: Static Members
-    static var identifierFactory = 0
+    private static var identifierFactory = 0
     
     //MARK: Members
     var isFaceUp = false
@@ -24,7 +24,7 @@ struct Card {
     }
     
     //MARK: Static Methods
-    static func getUniqueIdentifier() -> Int {
+    private static func getUniqueIdentifier() -> Int {
         identifierFactory += 1
         return identifierFactory
     }
