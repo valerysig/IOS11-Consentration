@@ -19,3 +19,9 @@ extension Int {
         }
     }
 }
+
+extension Collection {
+    var oneAndOnly : Element? {
+        return count == 1 ? first : nil
+    }
+}

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Consentration {
+struct Consentration {
     //MARK: Members
     private(set) var cards = [Card]()
     private var chosenCards = Set<Int>()
@@ -19,18 +19,7 @@ class Consentration {
     //MARK: Properties
     private var indexOfOneAndOnlyFaceUpCard : Int? {
         get {
-            var foundIndex : Int?
-            for index in cards.indices {
-                if cards[index].isFaceUp {
-                    if foundIndex == nil {
-                        foundIndex = index
-                    } else {
-                        return nil
-                    }
-                }
-            }
-            
-            return foundIndex
+            return cards.indices.filter {cards[$0].isFaceUp}.oneAndOnly
         }
         set {
             for index in cards.indices {
@@ -56,7 +45,7 @@ class Consentration {
     }
     
     //MARK: Methods
-    func chooseCard(at index : Int) {
+    mutating func chooseCard(at index : Int) {
         assert(cards.indices.contains(index), "Consentration.chooseCard(at: \(index)): chosen index no in the cards")
         
         if !cards[index].isMatched {
@@ -64,7 +53,7 @@ class Consentration {
             
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
                 // check if cards match
-                if cards[matchIndex].identifier == cards[index].identifier {
+                if cards[matchIndex] == cards[index] {
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
                     
@@ -83,14 +72,14 @@ class Consentration {
     }
     
     //MARK: Private Methods
-    private func populateCards(_ numberOfPairsOfCards : Int) {
+    private mutating func populateCards(_ numberOfPairsOfCards : Int) {
         for _ in 0..<numberOfPairsOfCards {
             let card = Card()
             cards += [card, card]
         }
     }
     
-    private func shuffleCards() {
+    private mutating func shuffleCards() {
         var shuffledCards = [Card]()
         for _ in cards.indices {
             let randomIndex = cards.count.arc4random

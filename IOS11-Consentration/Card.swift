@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct Card {
+struct Card : Hashable {
     
     //MARK: Static Members
     private static var identifierFactory = 0
@@ -16,7 +16,12 @@ struct Card {
     //MARK: Members
     var isFaceUp = false
     var isMatched = false
-    var identifier : Int
+    private var identifier : Int
+    
+    //MARK: Properties
+    var hashValue : Int {
+        return identifier
+    }
     
     //MARK: Constructors
     init() {
@@ -28,4 +33,9 @@ struct Card {
         identifierFactory += 1
         return identifierFactory
     }
+    
+    static func ==(lhs : Card, rhs : Card) -> Bool {
+        return lhs.identifier == rhs.identifier
+    }
+    
 }
